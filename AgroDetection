@@ -4,15 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AgroDetection : MonoBehaviour
 {
-  
+
+    public event System.Action<Transform> OnAggro = delegate { };
     private GameObject player;
     private void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<MopvePlayer>();
         if(player != null)
         {
+            OnAggro(player.transform);
             Debug.Log("Aggrow");
             GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
         }
     }
+
+  
 }
