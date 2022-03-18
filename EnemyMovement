@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyMovement : MonoBehaviour
+{
+    private AgroDetection aggroDetection;
+
+    private void Awake()
+    {
+        aggroDetection = GetComponent<AgroDetection>();
+        aggroDetection.OnAggro += AggroDetection_OnAggro;
+    }
+
+    private void AggroDetection_OnAggro(Transform target)
+    {
+        GetComponent<NavMeshAgent>().SetDestination(target.position);
+    }
+}
