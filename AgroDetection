@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 public class AgroDetection : MonoBehaviour
 {
 
@@ -9,14 +10,13 @@ public class AgroDetection : MonoBehaviour
     private GameObject player;
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<MopvePlayer>();
-        if(player != null)
+        player = GameObject.Find("Player");
+        if (player != null)
         {
             OnAggro(player.transform);
-            Debug.Log("Aggrow");
+      
             GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
         }
     }
 
-  
 }
